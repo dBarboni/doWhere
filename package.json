@@ -1,0 +1,30 @@
+{
+  "name": "dowhere",
+  "version": "0.0.1",
+  "description": "Location based todo app",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dBarboni/dowhere.git"
+  },
+  "keywords": [
+    "todo"
+  ],
+  "author": "dan barboni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dBarboni/dowhere/issues"
+  },
+  "homepage": "https://github.com/dBarboni/dowhere#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongodb": "^3.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
