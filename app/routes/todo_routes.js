@@ -1,5 +1,15 @@
 var ObjectID = require('mongodb').ObjectID;
 
+//Check if required properties have been defined in request
+function reqPropsDefined(props, req){
+  for(var p = 0; p < props.length; p++){
+    if(!(props[p] in req.body) || (req.body[props[p]].length <= 0)){
+      return false;
+    }
+  }
+  return true;
+}
+
 module.exports = function(app, db){
   //Get all tasks
   app.get('/tasks', (req, res) => {
@@ -66,15 +76,21 @@ module.exports = function(app, db){
 
   //Create task
   app.post('/tasks', (req, res) => {
-    const item = {room: req.body.room, task: req.body.task, user: req.body.user};
-    db.collection('tasks').insert(item, (err, result) => {
-      if(err){
-        res.send({ 'error': err});
-      }
-      else{
-        res.send(result.ops[0]);
-      }
-    });
+    var reqProps = ['room', 'task', 'user'];
+    if(reqPropsDefined(reqProps, req)){
+      const item = {room: req.body.room, task: req.body.task, user: req.body.user};
+      db.collection('tasks').insert(item, (err, result) => {
+        if(err){
+          res.send({'error': err});
+        }
+        else{
+          res.send(result.ops[0]);
+        }
+      });
+    }
+    else{
+      res.send({'error': 'Required properties not defined.'});
+    }
   });
 
   //Delete task by id
