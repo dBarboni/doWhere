@@ -2,7 +2,11 @@
 const express        = require('express');
 const MongoClient    = require('mongodb').MongoClient;
 const bodyParser     = require('body-parser');
+
 var db               = require('./config/db');
+var find3            = require('./config/find3');
+
+var location         = require('./app/helpers/location.js');
 
 const app            = express();
 
