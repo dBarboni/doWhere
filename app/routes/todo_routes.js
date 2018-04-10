@@ -1,5 +1,4 @@
 var helper = require('../helpers/helpers.js');
-
 var ObjectID = require('mongodb').ObjectID;
 
 module.exports = function(app, db){
