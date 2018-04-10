@@ -1,14 +1,6 @@
-var ObjectID = require('mongodb').ObjectID;
+var helper = require('../helpers/helpers.js');
 
-//Check if required properties have been defined in request
-function reqPropsDefined(props, req){
-  for(var p = 0; p < props.length; p++){
-    if(!(props[p] in req.body) || (req.body[props[p]].length <= 0)){
-      return false;
-    }
-  }
-  return true;
-}
+var ObjectID = require('mongodb').ObjectID;
 
 module.exports = function(app, db){
   //Get all tasks
@@ -49,18 +41,6 @@ module.exports = function(app, db){
     }));
   });
 
-  //Get unique users
-  app.get('/users', (req, res) => {
-    db.collection("tasks").distinct("user", (function(err, result) {
-      if(err){
-        res.send({'error': err});
-      }
-      else{
-        res.send(result);
-      }
-    }));
-  });
-
   //Get tasks by room
   app.get('/rooms/:room', (req, res) => {
     const room = req.params.room;
@@ -77,7 +57,7 @@ module.exports = function(app, db){
   //Create task
   app.post('/tasks', (req, res) => {
     var reqProps = ['room', 'task', 'user'];
-    if(reqPropsDefined(reqProps, req)){
+    if(helper.reqPropsDefined(reqProps, req)){
       const item = {room: req.body.room, task: req.body.task, user: req.body.user};
       db.collection('tasks').insert(item, (err, result) => {
         if(err){
