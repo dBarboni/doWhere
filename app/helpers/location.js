@@ -1,5 +1,5 @@
 const axios          = require('axios');
-var find3            = require('./config/find3');
+var find3            = require('../../config/find3');
 
 module.exports = {
   //Get user position
