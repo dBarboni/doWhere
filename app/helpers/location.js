@@ -1,9 +1,10 @@
 const axios          = require('axios');
+var find3            = require('./config/find3');
 
 module.exports = {
   //Get user position
-  getPos: function(serverAddress, family, user){
-    axios.get(serverAddress + '/view/location/' + family + "/" + user)
+  getPos: function(user){
+    axios.get(find3.serverAddress + '/view/location/' + find3.family + "/" + user)
       .then(function(response){
         console.log(response);
       })
