@@ -5,8 +5,6 @@ const bodyParser     = require('body-parser');
 
 var db               = require('./config/db');
 
-var location         = require('./app/helpers/location.js');
-
 const app            = express();
 
 //Init server

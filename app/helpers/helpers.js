@@ -7,14 +7,5 @@ module.exports = {
       }
     }
     return true;
-  },
-  notifyUser: function(apikey, deviceid, name, title, text){
-    axios.post('https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?deviceId=' + deviceid + '&apikey=' + apikey + "&title=" + title + "&text=" + text, {})
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
   }
 };
